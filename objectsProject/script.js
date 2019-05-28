@@ -2946,8 +2946,8 @@ let myObj = [
 
 ];
 
-function percentOfEyeColor(data) {
-  let eyeColorObj = {}; // obj for colors
+function popularFruit(data) {
+  let fruitsObj = {}; // obj for colors
   data.forEach(el => {  // adding color attribute in obj with their qty {brown: 74, green: 47, blue: 63}
     if (eyeColorObj[el.favoriteFruit]) {
       eyeColorObj[el.favoriteFruit] += 1;
