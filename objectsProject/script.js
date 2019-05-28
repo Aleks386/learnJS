@@ -2942,26 +2942,24 @@ let myObj = [
     latitude: 27.935981,
     longitude: 162.555479,
     favoriteFruit: "apple"
-    
   }
 ];
 
-function popularFruit(data) {
-  let fruitsObj = {}; // obj for colors
+
+
+
+function mostPopularFruit(data) {
+  let mainFruit = {}; // obj for colors
   data.forEach(el => {  // adding color attribute in obj with their qty {brown: 74, green: 47, blue: 63}
-    if (eyeColorObj[el.favoriteFruit]) {
-      eyeColorObj[el.favoriteFruit] += 1;
+    if (mainFruit[el.favoriteFruit]) {
+      mainFruit[el.favoriteFruit] += 1;
     } else {
-      eyeColorObj[el.favoriteFruit] = 1;
+      mainFruit[el.favoriteFruit] = 1;
     }
   });
-  for (key in eyeColorObj) { // calculating percent of colors
-    eyeColorObj[key] = Math.round(eyeColorObj[key] / (data.length / 100));
-  }
-  return console.log(eyeColorObj); //{brown: 40, green: 26, blue: 34}
+  return console.log(mainFruit); //{brown: 40, green: 26, blue: 34}
 }
-
-percentOfEyeColor(myObj);
+mostPopularFruit(myObj);
 
 
 /*
