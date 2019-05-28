@@ -2942,8 +2942,8 @@ let myObj = [
     latitude: 27.935981,
     longitude: 162.555479,
     favoriteFruit: "apple"
+    
   }
-
 ];
 
 function popularFruit(data) {
