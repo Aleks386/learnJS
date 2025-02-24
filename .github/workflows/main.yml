@@ -2,7 +2,7 @@ name: test workflow
 on:
   workflow_dispatch:
 env:
-  LAST_WEEK_START: date -d "yesterday" +'%Y-%m-%d'
+  LAST_WEEK_START: $(date -d "yesterday" +'%Y-%m-%d')
   LAST_WEEK_END: date -d "7 days ago" +'%Y-%m-%d'
 jobs:
   sandbox-operation:
@@ -13,3 +13,11 @@ jobs:
         run: |
           echo ${{ env.LAST_WEEK_START }}
           echo ${{ env.LAST_WEEK_END }}
+      
+      - name: Get yesterday's date
+        id: get_date
+        run: |
+          # Get yesterday's date in the format YYYY-MM-DD
+          YESTERDAY_DATE=$(date -d "yesterday" +'%Y-%m-%d')
+          echo "Yesterday's date is: $YESTERDAY_DATE"
+          echo "::set-output name=yesterday_date::$YESTERDAY_DATE"
