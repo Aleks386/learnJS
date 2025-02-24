@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
 env:
   LAST_WEEK_START: $(date -d "yesterday" +'%Y-%m-%d')
-  LAST_WEEK_END: date -d "7 days ago" +'%Y-%m-%d'
+  LAST_WEEK_END: $(date -d "7 days ago" +'%Y-%m-%d')
 jobs:
   sandbox-operation:
     name: test 
