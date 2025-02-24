@@ -1,13 +1,16 @@
 name: test workflow
 on:
   workflow_dispatch:
-
+env:
+  LAST_WEEK_START: $(date --date='1 days ago')
+  LAST_WEEK_END: $(date --date='8 days ago')
 jobs:
   sandbox-operation:
     name: test 
     runs-on: ubuntu-latest
     steps:
-      - name: Set current date as env variable
-        run: echo "NOW=$(date --date='1 days ago')" >> $GITHUB_ENV
+
       - name: Echo current date
-        run: echo $NOW # Gives "2022-12-11T01:42:20"
+        run: |
+          echo ${{ env.LAST_WEEK_START }}
+          echo ${{ env.LAST_WEEK_END }}
