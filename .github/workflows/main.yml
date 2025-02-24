@@ -2,8 +2,8 @@ name: test workflow
 on:
   workflow_dispatch:
 env:
-  LAST_WEEK_START: $(date --date='1 days ago')
-  LAST_WEEK_END: $(date --date='8 days ago')
+  LAST_WEEK_START: $(date+’%Y/%m/%d’ --date='1 days ago')
+  LAST_WEEK_END: $(date+’%Y/%m/%d’ --date='7 days ago')
 jobs:
   sandbox-operation:
     name: test 
