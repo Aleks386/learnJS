@@ -2,8 +2,8 @@ name: test workflow
 on:
   workflow_dispatch:
 env:
-  LAST_WEEK_START: (date --date='1 day ago')+%Y-%m-%dT
-  LAST_WEEK_END: date --date='7 day ago'
+  LAST_WEEK_START: date -d "yesterday" +'%Y-%m-%d'
+  LAST_WEEK_END: date -d "7 days ago" +'%Y-%m-%d'
 jobs:
   sandbox-operation:
     name: test 
@@ -12,3 +12,4 @@ jobs:
       - name: Echo current date
         run: |
           echo ${{ env.LAST_WEEK_START }}
+          echo ${{ env.LAST_WEEK_END }}
