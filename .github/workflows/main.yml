@@ -11,7 +11,4 @@ jobs:
     steps:
 
       - name: Echo current date
-        run: |
-          echo date --help
-          echo ${{ env.LAST_WEEK_START }}
-          echo ${{ env.LAST_WEEK_END }}
+        run: date --help
