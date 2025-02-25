@@ -14,10 +14,26 @@ jobs:
           echo ${{ env.LAST_WEEK_START }}
           echo ${{ env.LAST_WEEK_END }}
       
-      - name: Get yesterday's date
-        id: get_date
+      - name: Get dates for the last 4 months excluding the current month
         run: |
-          # Get yesterday's date in the format YYYY-MM-DD
-          YESTERDAY_DATE=$(date -d "yesterday" +'%Y-%m-%d')
-          echo "Yesterday's date is: $YESTERDAY_DATE"
-          echo "::set-output name=yesterday_date::$YESTERDAY_DATE"
+          # Loop through the last 4 months (excluding the current month)
+          for i in {1..4}; do
+            # Get the first day of the current month - i months ago
+            START_DATE=$(date -d "$(date +'%Y-%m-01') -$i month" +'%Y-%m-%d')
+            
+            # Get the last day of the current month - i months ago
+            END_DATE=$(date -d "$(date +'%Y-%m-01') -$i month +1 month -1 day" +'%Y-%m-%d')
+            
+            echo "Month $i: Start Date = $START_DATE, End Date = $END_DATE"
+            
+            # Optionally, store them in environment variables
+            echo "START_DATE_$i=$START_DATE" >> $GITHUB_ENV
+            echo "END_DATE_$i=$END_DATE" >> $GITHUB_ENV
+
+      - name: Show stored environment variables
+        run: |
+          # Display all start and end dates for the last 4 months
+          echo "Month 1: Start Date = ${{ env.START_DATE_1 }}, End Date = ${{ env.END_DATE_1 }}"
+          echo "Month 2: Start Date = ${{ env.START_DATE_2 }}, End Date = ${{ env.END_DATE_2 }}"
+          echo "Month 3: Start Date = ${{ env.START_DATE_3 }}, End Date = ${{ env.END_DATE_3 }}"
+          echo "Month 4: Start Date = ${{ env.START_DATE_4 }}, End Date = ${{ env.END_DATE_4 }}"
