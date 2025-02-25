@@ -13,7 +13,7 @@ jobs:
         run: |
           echo ${{ env.LAST_WEEK_START }}
           echo ${{ env.LAST_WEEK_END }}
-      
+          
       - name: Get dates for the last 4 months excluding the current month
         run: |
           # Loop through the last 4 months (excluding the current month)
@@ -26,9 +26,10 @@ jobs:
             
             echo "Month $i: Start Date = $START_DATE, End Date = $END_DATE"
             
-            # Optionally, store them in environment variables
+            # Optionally, store them in environment variables for later steps
             echo "START_DATE_$i=$START_DATE" >> $GITHUB_ENV
             echo "END_DATE_$i=$END_DATE" >> $GITHUB_ENV
+          done
 
       - name: Show stored environment variables
         run: |
@@ -36,4 +37,4 @@ jobs:
           echo "Month 1: Start Date = ${{ env.START_DATE_1 }}, End Date = ${{ env.END_DATE_1 }}"
           echo "Month 2: Start Date = ${{ env.START_DATE_2 }}, End Date = ${{ env.END_DATE_2 }}"
           echo "Month 3: Start Date = ${{ env.START_DATE_3 }}, End Date = ${{ env.END_DATE_3 }}"
-          echo "Month 4: Start Date = ${{ env.START_DATE_4 }}, End Date = ${{ env.END_DATE_4 }}"
+          echo "Month 4: Start Date = ${{ env.START_DATE_4 }}, End Date = ${{ env.END_DATE_4 }}" 
