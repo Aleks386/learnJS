@@ -38,11 +38,13 @@ jobs:
           # Loop through the last 6 weeks (excluding the current week)
           for i in {1..6}; do
             # Get the start date of the week (i weeks ago)
-            START_DATE=$(${{env.TODAY}} -d "last Sunday -$i week +1 day" +'%Y-%m-%d')
-            
+            # START_DATE=$(${{env.TODAY}} -d "last Sunday -$i week +1 day" +'%Y-%m-%d')
+            START_DATE=$(date -d "${{env.TODAY}} -$i week last sunday +1 day" +'%Y-%m-%d')
+
             # Get the end date of the week (i weeks ago)
-            END_DATE=$(${{env.TODAY}} -d "last Sunday -$i week" +'%Y-%m-%d')
-            
+            # END_DATE=$(${{env.TODAY}} -d "last Sunday -$i week" +'%Y-%m-%d')
+            END_DATE=$(date -d "${{env.TODAY}} -$i week last sunday" +'%Y-%m-%d')
+
             echo "Week $i: Start Date = $START_DATE, End Date = $END_DATE"
             
             # Optionally, store them in environment variables for later steps
