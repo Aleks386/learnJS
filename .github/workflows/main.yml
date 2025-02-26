@@ -4,7 +4,7 @@ on:
 env:
   LAST_WEEK_START: $(date -d "yesterday" +'%Y-%m-%d')
   LAST_WEEK_END: $(date -d "7 days ago" +'%Y-%m-%d')
-  TODAY: "2025-02-24"
+  TODAY: "2025-02-27"
 jobs:
   sandbox-operation:
     name: test 
