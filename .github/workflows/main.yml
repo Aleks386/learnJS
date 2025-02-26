@@ -47,6 +47,7 @@ jobs:
             # Optionally, store them in environment variables for later steps
             echo "START_WEEK_$i=$START_DATE" >> $GITHUB_ENV
             echo "END_WEEK_$i=$END_DATE" >> $GITHUB_ENV
+          done
 
       - name: Show stored environment variables
         run: |
@@ -55,3 +56,11 @@ jobs:
           echo "Month 2: Start Date = ${{ env.START_DATE_2 }}, End Date = ${{ env.END_DATE_2 }}"
           echo "Month 3: Start Date = ${{ env.START_DATE_3 }}, End Date = ${{ env.END_DATE_3 }}"
           echo "Month 4: Start Date = ${{ env.START_DATE_4 }}, End Date = ${{ env.END_DATE_4 }}" 
+          echo "--------------"
+          echo "Week 1: Start Date = ${{ env.START_WEEK_1 }}, End Date = ${{ env.END_WEEK_1 }}"
+          echo "Week 2: Start Date = ${{ env.START_WEEK_2 }}, End Date = ${{ env.END_WEEK_2 }}"
+          echo "Week 3: Start Date = ${{ env.START_WEEK_3 }}, End Date = ${{ env.END_WEEK_3 }}"
+          echo "Week 4: Start Date = ${{ env.START_WEEK_4 }}, End Date = ${{ env.END_WEEK_4 }}" 
+          echo "Week 5: Start Date = ${{ env.START_WEEK_5 }}, End Date = ${{ env.END_WEEK_5 }}" 
+          echo "Week 6: Start Date = ${{ env.START_WEEK_6 }}, End Date = ${{ env.END_WEEK_6 }}" 
+
