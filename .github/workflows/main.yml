@@ -31,6 +31,23 @@ jobs:
             echo "END_DATE_$i=$END_DATE" >> $GITHUB_ENV
           done
 
+      - name: Get dates for the last 6 weeks excluding the current month
+        run: |
+          # Loop through the last 4 months (excluding the current month)
+          for i in {1..6}; do
+            # Get the first day of the current month - i months ago
+            START_WEEK=$(date -d "$(date +'%Y-%m-%d') -$i week" +'%Y-%m-%d')
+            
+            # Get the last day of the current month - i months ago
+            END_WEEK=$(date -d "$(date +'%Y-%m-%d') -$i week +1 month -1 day" +'%Y-%m-%d')
+            
+            echo "Month $i: Start Date = $START_DATE, End Date = $END_DATE"
+            
+            # Optionally, store them in environment variables for later steps
+            echo "START_WEEK_$i=$START_DATE" >> $GITHUB_ENV
+            echo "END_WEEK_$i=$END_DATE" >> $GITHUB_ENV
+          done
+
       - name: Show stored environment variables
         run: |
           # Display all start and end dates for the last 4 months
