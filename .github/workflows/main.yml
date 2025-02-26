@@ -4,6 +4,7 @@ on:
 env:
   LAST_WEEK_START: $(date -d "yesterday" +'%Y-%m-%d')
   LAST_WEEK_END: $(date -d "7 days ago" +'%Y-%m-%d')
+  TODAY: "2025-02-24"
 jobs:
   sandbox-operation:
     name: test 
@@ -37,10 +38,10 @@ jobs:
           # Loop through the last 6 weeks (excluding the current week)
           for i in {1..6}; do
             # Get the start date of the week (i weeks ago)
-            START_DATE=$(date -d "last Sunday -$i week +1 day" +'%Y-%m-%d')
+            START_DATE=$(${{env.TODAY}} -d "last Sunday -$i week +1 day" +'%Y-%m-%d')
             
             # Get the end date of the week (i weeks ago)
-            END_DATE=$(date -d "last Sunday -$i week" +'%Y-%m-%d')
+            END_DATE=$(${{env.TODAY}} -d "last Sunday -$i week" +'%Y-%m-%d')
             
             echo "Week $i: Start Date = $START_DATE, End Date = $END_DATE"
             
